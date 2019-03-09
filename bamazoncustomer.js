@@ -60,8 +60,7 @@ function updateDB(id, quantity, stock_quantity, price) {
     }
     else {
         var total = quantity * price;
-        var newStock = stock_quantity - quantity;
-        var query = `UPDATE products SET stock_quantity = ${newStock} WHERE item_id = ${id}`;
+        var query = `UPDATE products SET stock_quantity = stock_quantity - ${quantity} WHERE item_id = ${id}`;
         con.query(query, function(err, result) {
             if (err) throw err;
         });
