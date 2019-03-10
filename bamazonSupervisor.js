@@ -51,3 +51,27 @@ inquirer
         console.log(table.table(data));
     });
   }
+
+  function newDepartment() {
+      inquirer
+      .prompt([
+          {
+              type: 'input',
+              name: 'name',
+              message: 'Name of new department: '
+          },
+          {
+              type: 'input',
+              name: 'overhead',
+              message: 'Overhead Costs: '
+          }
+      ])
+      .then(answers => {
+        var query = `INSERT INTO departments (department_name, over_head_costs) VALUES ('${answers.name}', '${answers.overhead}')`;
+        con.query(query, function(err, result) {
+            if (err) throw err;
+        });
+        var output = answers.name + " department added with overhead costs of $" + answers.overhead;
+        console.log(output);
+      })
+  }
