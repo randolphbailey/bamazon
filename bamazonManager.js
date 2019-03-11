@@ -13,6 +13,7 @@ var con = mysql.createConnection({
 
 con.connect(function(err) { if (err) throw err; });
 
+//Asks the manager what they would like to do
 inquirer
   .prompt({
       type: 'list',
@@ -53,6 +54,7 @@ inquirer
       }
   });
 
+  //Displays store items in table form
   function view(add) {
     var query = "SELECT * FROM products";
     con.query(query, function (err, result) {
@@ -68,6 +70,7 @@ inquirer
     });
   }
 
+  //Displays items which have low stock
   function low() {
     var query = "SELECT * FROM products WHERE stock_quantity < 5";
     con.query(query, function (err, result) {
@@ -81,6 +84,7 @@ inquirer
     });
   }
 
+  //Adds inventory to the database
   function addInventory() {
     inquirer
     .prompt([
@@ -105,6 +109,7 @@ inquirer
     });
   }
 
+  //Adds a new product to the database
   function newProduct() {
     inquirer
     .prompt([

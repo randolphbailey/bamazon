@@ -39,6 +39,7 @@ inquirer
       }
   });
 
+  //View the sum of sales by department and show total profit.
   function departmentSales() {
     var query = "SELECT departments.`department_id`, products.`department_name`, departments.`over_head_costs`, SUM(products.`product_sales`) AS department_sales, (SUM(products.`product_sales`) - departments.`over_head_costs`) AS total_profit FROM products RIGHT JOIN departments ON products.`department_name` = departments.`department_name` GROUP BY departments.`department_id`";
     con.query(query, function (err, result) {
@@ -52,6 +53,7 @@ inquirer
     });
   }
 
+  //Create a new department
   function newDepartment() {
       inquirer
       .prompt([
